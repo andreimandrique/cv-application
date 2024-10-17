@@ -1,5 +1,11 @@
+import Input from "./Input";
+
 function App() {
-  return <h1>Hello World</h1>;
+  return (
+    <>
+      <Input></Input>
+    </>
+  );
 }
 
 export default App;
