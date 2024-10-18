@@ -1,45 +1,114 @@
 import { useState } from "react";
 
-function Display({ isRegistered, children }) {
-  if (!isRegistered) {
-    return null;
-  }
-
-  return <>{children}</>;
-}
-
 function Input() {
-  const [value, setValue] = useState("");
-  const [show, setShow] = useState(false);
-  const [showInput, setShowInput] = useState(true);
+  const [person, setPerson] = useState({
+    fullName: "",
+    email: "",
+    number: "",
+    school: {
+      schoolName: "",
+      titleStudy: "",
+      dateStudy: "",
+    },
+    work: {
+      companyName: "",
+      responsibilities: "",
+      dateStart: "",
+      dateEnd: "",
+    },
+  });
 
-  function handleName() {
-    console.log(value);
-
-    setShow(true);
-    setShowInput(false);
+  function handleFullName(e) {
+    setPerson({ ...person, fullName: e.target.value });
   }
 
-  function handleEdit() {
-    setShow(false);
-    setShowInput(true);
+  function handleEmail(e) {
+    setPerson({ ...person, email: e.target.value });
+  }
+
+  function handleNumber(e) {
+    setPerson({ ...person, number: e.target.value });
+  }
+
+  function handleSchoolName(e) {
+    setPerson({
+      ...person,
+      school: { ...person.school, schoolName: e.target.value },
+    });
+  }
+
+  function handleTitleStudy(e) {
+    setPerson({
+      ...person,
+      school: { ...person.school, titleStudy: e.target.value },
+    });
+  }
+
+  function handleDateStudy(e) {
+    setPerson({
+      ...person,
+      school: { ...person.school, dateStudy: e.target.value },
+    });
   }
 
   return (
     <>
-      <Display isRegistered={showInput}>
+      <h3>Personal Info</h3>
+      <div className="input-container">
+        <label htmlFor="fullName">FullName: </label>
         <input
           type="text"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
+          id="fullName"
+          value={person.fullName}
+          onChange={handleFullName}
         ></input>
-        <button onClick={handleName}>Submit</button>
-      </Display>
-
-      <Display isRegistered={show}>
-        <h1>{value}</h1>
-        <button onClick={handleEdit}>Edit</button>
-      </Display>
+      </div>
+      <div className="input-container">
+        <label htmlFor="personalEmail">Email: </label>
+        <input
+          type="email"
+          id="personalEmail"
+          value={person.email}
+          onChange={handleEmail}
+        ></input>
+      </div>
+      <div className="input-container">
+        <label htmlFor="number">Number: </label>
+        <input
+          type="number"
+          id="number"
+          value={person.number}
+          onChange={handleNumber}
+        ></input>
+      </div>
+      <h3>School</h3>
+      <div className="input-container">
+        <label htmlFor="schoolName">School Name: </label>
+        <input
+          type="text"
+          id="schoolName"
+          value={person.school.schoolName}
+          onChange={handleSchoolName}
+        ></input>
+      </div>
+      <div className="input-container">
+        <label htmlFor="titleStudy">Title Study: </label>
+        <input
+          type="text"
+          id="titleStudy"
+          value={person.school.titleStudy}
+          onChange={handleTitleStudy}
+        ></input>
+      </div>
+      <div className="input-container">
+        <label htmlFor="dateStudy">Date Study: </label>
+        <input
+          type="date"
+          id="dateStudy"
+          value={person.school.dateStudy}
+          onChange={handleDateStudy}
+        ></input>
+      </div>
     </>
   );
 }
