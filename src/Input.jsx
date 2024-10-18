@@ -8,13 +8,13 @@ function Input() {
     school: {
       schoolName: "",
       titleStudy: "",
-      dateStudy: "",
+      studyDate: "",
     },
     work: {
       companyName: "",
       responsibilities: "",
-      dateStart: "",
-      dateEnd: "",
+      startDate: "",
+      endDate: "",
     },
   });
 
@@ -44,11 +44,43 @@ function Input() {
     });
   }
 
-  function handleDateStudy(e) {
+  function handleStudyDate(e) {
     setPerson({
       ...person,
-      school: { ...person.school, dateStudy: e.target.value },
+      school: { ...person.school, studyDate: e.target.value },
     });
+  }
+
+  function handleCompanyName(e) {
+    setPerson({
+      ...person,
+      work: { ...person.work, companyName: e.target.value },
+    });
+  }
+
+  function handleResponsibilities(e) {
+    setPerson({
+      ...person,
+      work: { ...person.work, responsibilities: e.target.value },
+    });
+  }
+
+  function handleStartDate(e) {
+    setPerson({
+      ...person,
+      work: { ...person.work, startDate: e.target.value },
+    });
+  }
+
+  function handleEndDate(e) {
+    setPerson({
+      ...person,
+      work: { ...person.work, endDate: e.target.value },
+    });
+  }
+
+  function handleSave() {
+    console.log(person);
   }
 
   return (
@@ -101,13 +133,82 @@ function Input() {
         ></input>
       </div>
       <div className="input-container">
-        <label htmlFor="dateStudy">Date Study: </label>
+        <label htmlFor="studyDate">Date Study: </label>
         <input
           type="date"
-          id="dateStudy"
-          value={person.school.dateStudy}
-          onChange={handleDateStudy}
+          id="studyDate"
+          value={person.school.studyDate}
+          onChange={handleStudyDate}
         ></input>
+      </div>
+      <h3>Experience</h3>
+      <div className="input-container">
+        <label htmlFor="companyName">Company Name: </label>
+        <input
+          type="text"
+          id="companyName"
+          value={person.work.companyName}
+          onChange={handleCompanyName}
+        ></input>
+      </div>
+      <div className="input-container">
+        <label htmlFor="responsibilities">Responsibilities: </label>
+        <textarea
+          rows={4}
+          cols={40}
+          id="responsibilities"
+          value={person.work.responsibilities}
+          onChange={handleResponsibilities}
+        ></textarea>
+      </div>
+      <div className="input-container">
+        <label htmlFor="startDate">Start Date: </label>
+        <input
+          type="date"
+          id="startDate"
+          value={person.work.startDate}
+          onChange={handleStartDate}
+        ></input>
+      </div>
+      <div className="input-container">
+        <label htmlFor="endDate">End Date: </label>
+        <input
+          type="date"
+          id="endDate"
+          value={person.work.endDate}
+          onChange={handleEndDate}
+        ></input>
+      </div>
+      <div className="btn-container">
+        <button onClick={handleSave}>Save</button>
+      </div>
+      <div>
+        <h3>Personal Info</h3>
+        <div className="input-container">
+          <p>FullName: </p>
+          <p>{person.fullName}</p>
+        </div>
+        <div className="input-container">
+          <p>Email: </p>
+          <p>{person.email}</p>
+        </div>
+        <div className="input-container">
+          <p>Number: </p>
+          <p>{person.number}</p>
+        </div>
+        <h3>School</h3>
+        <div className="input-container">
+          <p>SchoolName: </p>
+          <p>{person.school.schoolName}</p>
+        </div>
+        <div className="input-container">
+          <p>Title Study: </p>
+          <p>{person.school.titleStudy}</p>
+        </div>
+        <div className="input-container">
+          <p>Date of Study: </p>
+          <p>{person.school.studyDate}</p>
+        </div>
       </div>
     </>
   );
