@@ -1,4 +1,14 @@
+* {
+  box-sizing: border-box;
+}
 .input-container {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.card {
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 1rem;
 }

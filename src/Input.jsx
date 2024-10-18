@@ -1,6 +1,15 @@
 import { useState } from "react";
 
+function Main({ isShowed, children }) {
+  if (isShowed) {
+    return <div className="card">{children}</div>;
+  }
+
+  return null;
+}
+
 function Input() {
+  const [show, setShow] = useState({ inputDisplay: true, infoDisplay: false });
   const [person, setPerson] = useState({
     fullName: "",
     email: "",
@@ -80,109 +89,116 @@ function Input() {
   }
 
   function handleSave() {
-    console.log(person);
+    setShow({ inputDisplay: false, infoDisplay: true });
+  }
+
+  function handleEdit() {
+    setShow({ inputDisplay: true, infoDisplay: false });
   }
 
   return (
     <>
-      <h3>Personal Info</h3>
-      <div className="input-container">
-        <label htmlFor="fullName">FullName: </label>
-        <input
-          type="text"
-          id="fullName"
-          value={person.fullName}
-          onChange={handleFullName}
-        ></input>
-      </div>
-      <div className="input-container">
-        <label htmlFor="personalEmail">Email: </label>
-        <input
-          type="email"
-          id="personalEmail"
-          value={person.email}
-          onChange={handleEmail}
-        ></input>
-      </div>
-      <div className="input-container">
-        <label htmlFor="number">Number: </label>
-        <input
-          type="number"
-          id="number"
-          value={person.number}
-          onChange={handleNumber}
-        ></input>
-      </div>
-      <h3>School</h3>
-      <div className="input-container">
-        <label htmlFor="schoolName">School Name: </label>
-        <input
-          type="text"
-          id="schoolName"
-          value={person.school.schoolName}
-          onChange={handleSchoolName}
-        ></input>
-      </div>
-      <div className="input-container">
-        <label htmlFor="titleStudy">Title Study: </label>
-        <input
-          type="text"
-          id="titleStudy"
-          value={person.school.titleStudy}
-          onChange={handleTitleStudy}
-        ></input>
-      </div>
-      <div className="input-container">
-        <label htmlFor="studyDate">Date Study: </label>
-        <input
-          type="date"
-          id="studyDate"
-          value={person.school.studyDate}
-          onChange={handleStudyDate}
-        ></input>
-      </div>
-      <h3>Experience</h3>
-      <div className="input-container">
-        <label htmlFor="companyName">Company Name: </label>
-        <input
-          type="text"
-          id="companyName"
-          value={person.work.companyName}
-          onChange={handleCompanyName}
-        ></input>
-      </div>
-      <div className="input-container">
-        <label htmlFor="responsibilities">Responsibilities: </label>
-        <textarea
-          rows={4}
-          cols={40}
-          id="responsibilities"
-          value={person.work.responsibilities}
-          onChange={handleResponsibilities}
-        ></textarea>
-      </div>
-      <div className="input-container">
-        <label htmlFor="startDate">Start Date: </label>
-        <input
-          type="date"
-          id="startDate"
-          value={person.work.startDate}
-          onChange={handleStartDate}
-        ></input>
-      </div>
-      <div className="input-container">
-        <label htmlFor="endDate">End Date: </label>
-        <input
-          type="date"
-          id="endDate"
-          value={person.work.endDate}
-          onChange={handleEndDate}
-        ></input>
-      </div>
-      <div className="btn-container">
-        <button onClick={handleSave}>Save</button>
-      </div>
-      <div>
+      <Main isShowed={show.inputDisplay}>
+        <h3>Personal Info</h3>
+        <div className="input-container">
+          <label htmlFor="fullName">FullName: </label>
+          <input
+            type="text"
+            id="fullName"
+            value={person.fullName}
+            onChange={handleFullName}
+          ></input>
+        </div>
+        <div className="input-container">
+          <label htmlFor="personalEmail">Email: </label>
+          <input
+            type="email"
+            id="personalEmail"
+            value={person.email}
+            onChange={handleEmail}
+          ></input>
+        </div>
+        <div className="input-container">
+          <label htmlFor="number">Number: </label>
+          <input
+            type="number"
+            id="number"
+            value={person.number}
+            onChange={handleNumber}
+          ></input>
+        </div>
+        <h3>School</h3>
+        <div className="input-container">
+          <label htmlFor="schoolName">School Name: </label>
+          <input
+            type="text"
+            id="schoolName"
+            value={person.school.schoolName}
+            onChange={handleSchoolName}
+          ></input>
+        </div>
+        <div className="input-container">
+          <label htmlFor="titleStudy">Title Study: </label>
+          <input
+            type="text"
+            id="titleStudy"
+            value={person.school.titleStudy}
+            onChange={handleTitleStudy}
+          ></input>
+        </div>
+        <div className="input-container">
+          <label htmlFor="studyDate">Date Study: </label>
+          <input
+            type="date"
+            id="studyDate"
+            value={person.school.studyDate}
+            onChange={handleStudyDate}
+          ></input>
+        </div>
+        <h3>Experience</h3>
+        <div className="input-container">
+          <label htmlFor="companyName">Company Name: </label>
+          <input
+            type="text"
+            id="companyName"
+            value={person.work.companyName}
+            onChange={handleCompanyName}
+          ></input>
+        </div>
+        <div className="input-container">
+          <label htmlFor="responsibilities">Responsibilities: </label>
+          <textarea
+            rows={4}
+            cols={40}
+            id="responsibilities"
+            value={person.work.responsibilities}
+            onChange={handleResponsibilities}
+          ></textarea>
+        </div>
+        <div className="input-container">
+          <label htmlFor="startDate">Start Date: </label>
+          <input
+            type="date"
+            id="startDate"
+            value={person.work.startDate}
+            onChange={handleStartDate}
+          ></input>
+        </div>
+        <div className="input-container">
+          <label htmlFor="endDate">End Date: </label>
+          <input
+            type="date"
+            id="endDate"
+            value={person.work.endDate}
+            onChange={handleEndDate}
+          ></input>
+        </div>
+        <div className="btn-container">
+          <button onClick={handleSave}>Save</button>
+        </div>
+      </Main>
+
+      <Main isShowed={show.infoDisplay}>
         <h3>Personal Info</h3>
         <div className="input-container">
           <p>FullName: </p>
@@ -209,7 +225,27 @@ function Input() {
           <p>Date of Study: </p>
           <p>{person.school.studyDate}</p>
         </div>
-      </div>
+        <h3>Experience</h3>
+        <div className="input-container">
+          <p>Company Name: </p>
+          <p>{person.work.companyName}</p>
+        </div>
+        <div className="input-container">
+          <p>Job Responsibilities: </p>
+          <p>{person.work.responsibilities}</p>
+        </div>
+        <div className="input-container">
+          <p>Start Date: </p>
+          <p>{person.work.startDate}</p>
+        </div>
+        <div className="input-container">
+          <p>End Date: </p>
+          <p>{person.work.endDate}</p>
+        </div>
+        <div className="btn-container">
+          <button onClick={handleEdit}>Edit</button>
+        </div>
+      </Main>
     </>
   );
 }
